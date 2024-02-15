@@ -1,0 +1,40 @@
+.box {
+  display: flex;
+  flex-direction: column;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+}
+.slider-value {
+  margin-left: 10px;
+}
+
+.filterApplied{
+  display: flex;
+  flex-direction: row;
+}
+
+table h3{
+  margin: 0;
+}
+
+.filterApplied p{
+  padding: 0 0.3rem 1rem 0.3rem;
+  margin: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}

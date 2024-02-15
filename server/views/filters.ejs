@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/filters.css" />
+  </head>
+  <body>
+    <h1>Student Information Table</h1>
+    <div class="box">
+      <div class="filters">
+        <h2>Filters</h2>
+        <form action="/filters" method="POST">
+          <div class="slider-container">
+            <label for="class10Marks">Class 10 Marks:</label>
+            <input
+              type="range"
+              id="class10Marks"
+              name="class10Marks"
+              min="60"
+              max="100"
+              value="60"
+            />
+            <span id="class10MarksValue" class="slider-value">60</span>
+          </div>
+          <br /><br />
+
+          <div class="slider-container">
+            <label for="class12Marks">Class 12 Marks:</label>
+            <input
+              type="range"
+              id="class12Marks"
+              name="class12Marks"
+              min="60"
+              max="100"
+              value="60"
+            />
+            <span id="class12MarksValue" class="slider-value">60</span>
+          </div>
+          <br /><br />
+
+          <div class="slider-container">
+            <label for="collegeCGPA">College CGPA:</label>
+            <input
+              type="range"
+              id="collegeCGPA"
+              name="collegeCGPA"
+              min="6"
+              max="10"
+              step="0.1"
+              value="6"
+            />
+            <span id="collegeCGPAValue" class="slider-value">6</span>
+          </div>
+          <br /><br />
+
+          <label for="branch">Branch:</label>
+          <select id="branch" name="branch">
+            <option value="Computer Science">Computer Science</option>
+            <option value="Artificial Intelligence">
+              Artificial Intelligence
+            </option>
+            <option value="Cloud Computing">Cloud Computing</option>
+            <option value="Cyber Security">Cyber Security</option>
+            <option value="Internet of Things">
+              Internet of Things
+            </option></select
+          ><br /><br />
+
+          <label for="domain">Domain:</label>
+          <select id="domain" name="domain">
+            <option value="Frontend Web Development">
+              Frontend Web Development
+            </option>
+            <option value="Backend Web Development">
+              Backend Web Development
+            </option>
+            <option value="Full stack web Dev">
+              Full-stack Web Development
+            </option>
+            <option value="Android Dev">Android Development</option>
+            <option value="Testing">Testing</option>
+            <option value="Machine Learning">Machine Learning</option>
+            <option value="Deep Learning">Deep Learning</option></select
+          ><br /><br />
+
+          <label for="language">Language:</label>
+          <select id="language" name="language">
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="Dart">Dart</option>
+            <option value="Go">Go</option>
+            <option value="Java">Java</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Julia">Julia</option>
+            <option value="Kotlin">Kotlin</option>
+            <option value="MySql">MySql</option>
+            <option value="Perl">Perl</option>
+            <option value="PHP">PHP</option>
+            <option value="Python">Python</option>
+            <option value="R">R</option>
+            <option value="Ruby">Ruby</option>
+            <option value="Rust">Rust</option>
+            <option value="Scala">Scala</option>
+            <option value="TypeScript">TypeScript</option></select
+          ><br /><br />
+
+          <input type="submit" value="Search" />
+          <a href="/filters">Reset</a>
+        </form>
+      </div>
+
+      <div class="table">
+        <% if(filterApplied){ %>
+        <h3>Filters applied:</h3>
+        <div class="filterApplied">
+          <p>Class 10 Marks: <%= filter[0] %></p>
+          <p>Class 12 Marks: <%= filter[1] %></p>
+          <p>College CGPA: <%= filter[2] %></p>
+          <p>Branch: <%= filter[3] %></p>
+          <p>Domain: <%= filter[4] %></p>
+          <p>Programing Language: <%= filter[5] %></p>
+        </div>
+        <% } %>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Registration Number</th>
+            <th>Branch</th>
+            <th>Year of Passing</th>
+            <th>Class 10 Marks</th>
+            <th>Class 12 Marks</th>
+            <th>Overall College CGPA</th>
+            <th>Domain</th>
+            <th>Language</th>
+          </tr>
+          <% items.forEach(function(item){ %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.regNo %></td>
+            <td><%= item.branch %></td>
+            <td><%= item.passingYear %></td>
+            <td><%= item.class10Marks %></td>
+            <td><%= item.class12Marks %></td>
+            <td><%= item.collegeCGPA %></td>
+            <td><%= item.domain %></td>
+            <td><%= item.language %></td>
+          </tr>
+          <% }) %>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      // Get the slider elements
+      const class10MarksSlider = document.getElementById("class10Marks");
+      const class12MarksSlider = document.getElementById("class12Marks");
+      const collegeCGPASlider = document.getElementById("collegeCGPA");
+
+      // Get the value display elements
+      const class10MarksValue = document.getElementById("class10MarksValue");
+      const class12MarksValue = document.getElementById("class12MarksValue");
+      const collegeCGPAValue = document.getElementById("collegeCGPAValue");
+
+      // Update the value display when slider value changes
+      class10MarksSlider.addEventListener("input", function () {
+        class10MarksValue.textContent = this.value;
+      });
+
+      class12MarksSlider.addEventListener("input", function () {
+        class12MarksValue.textContent = this.value;
+      });
+
+      collegeCGPASlider.addEventListener("input", function () {
+        collegeCGPAValue.textContent = this.value;
+      });
+    </script>
+  </body>
+</html>
